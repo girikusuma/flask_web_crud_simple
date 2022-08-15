@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+Edit - Product
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col col-md-6 position-absolute start-50 translate-middle-x">
+        <h3>Edit Category</h3>
+        <form method="post">
+            <div class="mb-3">
+                <label for="code" class="form-label">Code</label>
+                <input type="text" class="form-control" id="code" name="code" value="{{ category['code'] }}">
+            </div>
+            <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="name" name="name" value="{{ category['name'] }}">
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <div class="form-floating">
+                    <textarea class="form-control" placeholder="Leave a comment here" id="description" name="description" style="height: 150px">{{ category['description'] }}</textarea>
+                    <label for="description" class="text-muted">describe category</label>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary mb-2">Update Category</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

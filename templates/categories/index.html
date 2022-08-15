@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+List - Categories
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col">
+        <h3>List Categories</h3>
+        <a href="/categories/add/" class="btn btn-primary">Add Category</a>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Code</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for category in categories %}
+                <tr>
+                    <td>{{ category["id"] }}</td>
+                    <td>{{ category["code"] }}</td>
+                    <td>{{ category["name"] }}</td>
+                    <td>{{ category["description"] }}</td>
+                    <td>
+                        <a href="/categories/edit/{{ category['id'] }}" class="btn btn-warning d-inline">Edit</a>
+                        <form action="/categories/delete/" method="post" class="d-inline">
+                            <input type="hidden" name="id" value="{{ category['id'] }}">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

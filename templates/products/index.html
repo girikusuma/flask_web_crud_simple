@@ -1,0 +1,48 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+List - Products
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col">
+        <h3>List Products</h3>
+        <a href="/products/add/" class="btn btn-primary">Add Product</a>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Code</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Stock</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                <tr>
+                    <td>{{ product["id"] }}</td>
+                    <td>{{ product["code"] }}</td>
+                    <td>{{ product["category"] }}</td>
+                    <td>{{ product["name"] }}</td>
+                    <td>{{ product["description"] }}</td>
+                    <td>{{ product["price"] }}</td>
+                    <td>{{ product["stock"] }}</td>
+                    <td>
+                        <a href="/products/edit/{{ product['slug'] }}" class="btn btn-warning d-inline">Edit</a>
+                        <form action="/products/delete/" method="post" class="d-inline">
+                            <input type="hidden" name="id" value="{{ product['id'] }}">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
